@@ -1,0 +1,59 @@
+.productsPage { padding-top: 90px; }
+.heroSection {
+  background: var(--green); padding: 60px 5% 50px; text-align: center;
+}
+.heroTitle {
+  font-family: var(--font-playfair), serif; font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700; color: white; margin-bottom: 12px;
+}
+.heroTitle em { color: var(--orange); font-style: italic; }
+.heroSub { font-size: 16px; color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 28px; }
+.searchWrap {
+  max-width: 480px; margin: 0 auto; position: relative;
+}
+.searchInput {
+  width: 100%; padding: 14px 20px 14px 48px; border: none;
+  border-radius: 30px; font-size: 14px; font-family: inherit;
+  background: rgba(255,255,255,0.12); color: white;
+  backdrop-filter: blur(10px); outline: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: all 0.3s;
+}
+.searchInput::placeholder { color: rgba(255,255,255,0.5); }
+.searchInput:focus {
+  background: rgba(255,255,255,0.18);
+  border-color: var(--orange);
+  box-shadow: 0 0 20px rgba(244,123,32,0.2);
+}
+.searchIcon {
+  position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+  font-size: 18px; opacity: 0.7;
+}
+.filters { padding: 28px 5%; background: var(--cream); border-bottom: 1px solid var(--border); }
+.filterRow { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.filterBtn {
+  padding: 10px 22px; border-radius: 30px; border: 1.5px solid var(--border);
+  background: white; font-size: 13px; font-weight: 600; color: var(--text2);
+  cursor: pointer; transition: all 0.3s; font-family: inherit;
+}
+.filterBtn:hover { border-color: var(--orange); color: var(--orange); }
+.filterActive {
+  background: var(--green); color: white; border-color: var(--green);
+}
+.catalog { padding: 40px 5% 80px; }
+.catalogGrid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.noResults {
+  grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+  color: var(--text2); font-size: 16px;
+}
+.bulkSection {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-m) 100%);
+  padding: 60px 5%; text-align: center;
+}
+.bulkTitle {
+  font-family: var(--font-playfair), serif; font-size: 2rem;
+  color: white; font-weight: 700; margin-bottom: 12px;
+}
+.bulkSub { color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 28px; }

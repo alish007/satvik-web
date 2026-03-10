@@ -1,0 +1,42 @@
+export const testimonials = [
+  {
+    name: 'Priya Mehta',
+    location: 'Adajan, Surat',
+    avatar: '👩‍💼',
+    rating: 5,
+    quote: 'I\'ve been subscribing to Satvik for 3 months now and the difference in my energy levels is incredible. The Green Detox juice is my absolute favorite — my skin is glowing!',
+    product: 'Weekly Detox Combo',
+  },
+  {
+    name: 'Rajesh Patel',
+    location: 'Vesu, Surat',
+    avatar: '👨‍💻',
+    rating: 5,
+    quote: 'As a diabetic, finding natural juices without added sugar was impossible until Satvik. Their cold-pressed juices are genuinely pure. The delivery at 7 AM sharp every morning is a bonus!',
+    product: 'Immunity Booster',
+  },
+  {
+    name: 'Anita Shah',
+    location: 'Piplod, Surat',
+    avatar: '👩‍🍳',
+    rating: 5,
+    quote: 'My whole family switched to Satvik vegetables. The difference between supermarket veggies and their farm-fresh ones is night and day. My kids actually enjoy eating vegetables now!',
+    product: 'Seasonal Veggie Box',
+  },
+  {
+    name: 'Dr. Karan Desai',
+    location: 'Athwalines, Surat',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    quote: 'I recommend Satvik to my patients regularly. Their cold-pressed method preserves the maximum nutrients. The turmeric ginger shot is basically liquid medicine — in the best way.',
+    product: 'Turmeric Ginger Shot',
+  },
+  {
+    name: 'Sneha Joshi',
+    location: 'Pal, Surat',
+    avatar: '🧘‍♀️',
+    quote: 'The subscription model is genius. I set it once and every morning a fresh juice arrives at my door. I\'ve lost 4 kg in 2 months just by replacing my chai with Satvik juice.',
+    rating: 5,
+    product: 'Green Power Detox',
+  },
+];

@@ -1,0 +1,27 @@
+.howSection { background: var(--cream2); }
+.howGrid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 32px; margin-top: 56px; position: relative;
+}
+.howGrid::before {
+  content: ''; position: absolute; top: 36px; left: 12%; right: 12%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+}
+.howStep {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.howNum {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--green); color: white;
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px; position: relative; z-index: 1;
+  box-shadow: 0 8px 24px rgba(26,58,42,0.2);
+}
+.howStep h4 {
+  font-size: 15px; font-weight: 700; color: var(--green); margin-bottom: 8px;
+}
+.howStep p {
+  font-size: 13px; color: var(--text2); line-height: 1.7;
+}

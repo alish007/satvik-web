@@ -1,0 +1,156 @@
+.aboutPage { padding-top: 90px; }
+
+/* Hero */
+.heroSection {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-m) 100%);
+  padding: 80px 5% 60px; text-align: center; position: relative; overflow: hidden;
+}
+.heroSection::after {
+  content: ''; position: absolute; bottom: -50%; left: -10%;
+  width: 120%; height: 100%; background: rgba(244,123,32,0.05);
+  border-radius: 50%;
+}
+.heroTitle {
+  font-family: var(--font-playfair), serif; font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700; color: white; margin-bottom: 14px; position: relative; z-index: 1;
+}
+.heroTitle em { color: var(--orange); font-style: italic; }
+.heroSub {
+  font-size: 16px; color: rgba(255,255,255,0.7); max-width: 560px;
+  margin: 0 auto; line-height: 1.8; position: relative; z-index: 1;
+}
+
+/* Story */
+.storySection { padding: 80px 5%; }
+.storyGrid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+.storyVisual {
+  background: var(--cream2); border-radius: 28px; padding: 60px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 120px; min-height: 340px; position: relative;
+}
+.storyTextBlock {}
+.storyTextBlock h3 {
+  font-family: var(--font-playfair), serif; font-size: 1.8rem;
+  font-weight: 700; color: var(--green); margin-bottom: 14px;
+}
+.storyTextBlock h3 em { color: var(--orange); font-style: italic; }
+.storyTextBlock p {
+  font-size: 15px; line-height: 1.85; color: var(--text2); margin-bottom: 14px;
+}
+
+/* Philosophy */
+.philosophySection {
+  background: var(--cream2); padding: 80px 5%; text-align: center;
+}
+.philGrid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px;
+}
+.philCard {
+  background: white; border-radius: 20px; padding: 32px 20px;
+  border: 1px solid var(--border); transition: all 0.4s;
+}
+.philCard:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
+.philIcon {
+  font-size: 42px; margin-bottom: 16px;
+  animation: philBounce 3s ease-in-out infinite;
+}
+@keyframes philBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.philCard h4 {
+  font-size: 15px; font-weight: 700; color: var(--green); margin-bottom: 8px;
+}
+.philCard p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* Farm Partners */
+.farmSection { padding: 80px 5%; }
+.farmGrid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;
+}
+.farmCard {
+  background: white; border-radius: 20px; overflow: hidden;
+  border: 1px solid var(--border); transition: all 0.4s;
+}
+.farmCard:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.farmCardTop {
+  height: 140px; display: flex; align-items: center; justify-content: center;
+  font-size: 56px; position: relative;
+  background: linear-gradient(135deg, var(--green-l), var(--cream2));
+}
+.farmCardBody { padding: 20px; }
+.farmCardBody h4 { font-size: 15px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+.farmLocation {
+  font-size: 12px; color: var(--orange); font-weight: 600; margin-bottom: 8px;
+}
+.farmCardBody p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* Sustainability */
+.sustainSection {
+  background: var(--green); padding: 80px 5%; text-align: center;
+}
+.sustainGrid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px;
+}
+.sustainCard {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 32px 20px;
+  transition: all 0.4s;
+}
+.sustainCard:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-6px);
+}
+.ringWrap {
+  width: 80px; height: 80px; margin: 0 auto 16px; position: relative;
+}
+.ringSvg { width: 80px; height: 80px; transform: rotate(-90deg); }
+.ringBg { stroke: rgba(255,255,255,0.1); fill: none; stroke-width: 6; }
+.ringFill {
+  fill: none; stroke: var(--orange); stroke-width: 6;
+  stroke-linecap: round; stroke-dasharray: 220;
+  transition: stroke-dashoffset 1.5s ease;
+}
+.ringValue {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 16px; font-weight: 800; color: var(--orange);
+}
+.sustainCard h4 { font-size: 14px; font-weight: 700; color: white; margin-bottom: 6px; }
+.sustainCard p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+/* Team */
+.teamSection { padding: 80px 5%; text-align: center; }
+.teamGrid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px;
+}
+.teamCard {
+  background: white; border-radius: 20px; padding: 32px 20px;
+  border: 1px solid var(--border); transition: all 0.4s;
+  cursor: pointer; perspective: 1000px;
+}
+.teamCard:hover {
+  transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+}
+.teamAvatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--green-l); display: flex; align-items: center;
+  justify-content: center; font-size: 32px; margin: 0 auto 14px;
+  box-shadow: 0 4px 16px rgba(26,58,42,0.1);
+}
+.teamCard h4 { font-size: 15px; font-weight: 700; color: var(--green); margin-bottom: 2px; }
+.teamRole {
+  font-size: 12px; color: var(--orange); font-weight: 600; margin-bottom: 10px;
+}
+.teamCard p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* Map placeholder */
+.mapSection {
+  padding: 60px 5%; background: var(--cream2); text-align: center;
+}
+.mapPlaceholder {
+  margin-top: 32px; background: white; border-radius: 20px;
+  height: 300px; display: flex; align-items: center; justify-content: center;
+  border: 2px dashed var(--border); font-size: 15px; color: var(--text3);
+}

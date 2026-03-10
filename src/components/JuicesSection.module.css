@@ -1,0 +1,62 @@
+.juicesSection {
+  background: var(--green); padding: 90px 5%;
+}
+.juicesSection .sEyebrow::before { background: var(--orange); }
+.juicesSection .sEyebrow span { color: rgba(255,255,255,0.65); }
+.juicesHdr {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 40px;
+}
+.sEyebrow {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+}
+.sEyebrow::before {
+  content: ''; width: 28px; height: 2px; background: var(--orange);
+}
+.sEyebrow span {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.65);
+}
+.sTitle {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 700;
+  color: white; line-height: 1.15;
+}
+.sTitle em { font-style: italic; color: var(--orange); }
+.juicesGrid {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px;
+}
+.jcard {
+  border-radius: 20px; overflow: hidden; cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.jcard:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.jcardTop {
+  height: 160px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px;
+  position: relative; padding: 16px 8px;
+}
+.jcardDayLabel {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,255,255,0.7);
+}
+.jcardEmoji {
+  font-size: 54px; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.25));
+}
+.jcardBody { padding: 12px 10px 14px; }
+.jcardName {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 12px; font-weight: 600; color: white;
+  line-height: 1.3; margin-bottom: 4px;
+}
+.jcardTag {
+  font-size: 9px; color: rgba(255,255,255,0.5);
+  margin-bottom: 10px; line-height: 1.4;
+}
+.jcardPrice { font-size: 14px; font-weight: 800; color: var(--orange); }
+.jcardSize { font-size: 9px; color: rgba(255,255,255,0.4); margin-top: 1px; }

@@ -1,0 +1,70 @@
+.featured { padding: 90px 5% 60px; background: var(--cream2); overflow: hidden; }
+.header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 40px;
+}
+.pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  padding: 8px 18px; border-radius: 30px; border: 1.5px solid var(--border);
+  background: white; font-size: 13px; font-weight: 600; color: var(--text2);
+  cursor: pointer; transition: all 0.3s; font-family: inherit;
+}
+.pill:hover { border-color: var(--orange); color: var(--orange); }
+.pillActive {
+  background: var(--orange); color: white; border-color: var(--orange);
+}
+.grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+}
+.card {
+  background: white; border-radius: 20px; overflow: hidden;
+  border: 1px solid var(--border); cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s;
+  text-decoration: none; color: inherit; display: block;
+}
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+}
+.cardTop {
+  height: 170px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 4px;
+  position: relative; overflow: hidden;
+}
+.cardEmoji {
+  font-size: 64px; transition: transform 0.4s ease;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.2));
+}
+.card:hover .cardEmoji { transform: scale(1.15) rotate(-5deg); }
+.cardShine {
+  position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+.card:hover .cardShine { left: 150%; }
+.badge {
+  position: absolute; top: 12px; right: 12px;
+  padding: 4px 10px; border-radius: 20px; font-size: 9px;
+  font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.badgeBestSeller { background: rgba(244,123,32,0.9); color: white; }
+.badgeNew { background: rgba(26,58,42,0.9); color: white; }
+.badgeSeasonal { background: rgba(139,26,42,0.8); color: white; }
+.badgeBestValue { background: rgba(184,134,11,0.9); color: white; }
+.cardBody { padding: 16px 18px 20px; }
+.cardCategory {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--text3); margin-bottom: 6px;
+}
+.cardName {
+  font-family: var(--font-playfair), serif; font-size: 16px;
+  font-weight: 600; color: var(--green); line-height: 1.3;
+  margin-bottom: 4px;
+}
+.cardSize { font-size: 12px; color: var(--text3); margin-bottom: 10px; }
+.cardPriceRow { display: flex; align-items: center; gap: 10px; }
+.cardPrice { font-size: 18px; font-weight: 800; color: var(--orange); }
+.cardSubPrice {
+  font-size: 11px; color: var(--green-m); background: var(--green-l);
+  padding: 3px 8px; border-radius: 10px; font-weight: 600;
+}

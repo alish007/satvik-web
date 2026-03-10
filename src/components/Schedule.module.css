@@ -1,0 +1,40 @@
+.schedSection {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.schedPhone {
+  background: var(--green); border-radius: 32px; padding: 32px 28px;
+  box-shadow: 0 30px 80px rgba(26,58,42,0.2);
+}
+.spHdr {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 17px; font-style: italic; color: rgba(255,255,255,0.7);
+  margin-bottom: 20px;
+}
+.spRow {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.spRow:last-of-type { border: none; }
+.spDay { font-size: 11px; color: rgba(255,255,255,0.5); width: 28px; }
+.spProduct {
+  display: flex; align-items: center; gap: 10px;
+  flex: 1; padding: 0 10px;
+}
+.spEm { font-size: 22px; }
+.spName { font-size: 13px; color: rgba(255,255,255,0.85); font-weight: 600; }
+.spStatus {
+  font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 20px;
+}
+.done { background: rgba(74,140,92,0.2); color: #7BC67E; }
+.upcoming { background: rgba(244,123,32,0.15); color: var(--orange); }
+.spRenew {
+  display: flex; align-items: center; gap: 6px; margin-top: 18px;
+  background: rgba(244,123,32,0.12); border: 1px solid rgba(244,123,32,0.2);
+  border-radius: 20px; padding: 10px 16px;
+}
+.spRenew span { font-size: 11px; color: rgba(255,255,255,0.65); }
+.textContent p {
+  font-size: 16px; line-height: 1.85; color: var(--text2);
+  margin: 20px 0 28px; font-weight: 400;
+}

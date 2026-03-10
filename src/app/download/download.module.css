@@ -1,0 +1,130 @@
+.downloadPage { padding-top: 90px; }
+.heroSection {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-m) 100%);
+  padding: 80px 5%; display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center; position: relative; overflow: hidden;
+}
+.heroSection::after {
+  content: ''; position: absolute; top: -60%; right: -15%;
+  width: 60%; height: 250%; background: rgba(244,123,32,0.06);
+  border-radius: 50%; pointer-events: none;
+}
+.heroText { position: relative; z-index: 1; }
+.heroTitle {
+  font-family: var(--font-playfair), serif; font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700; color: white; line-height: 1.1; margin-bottom: 16px;
+}
+.heroTitle em { color: var(--orange); font-style: italic; }
+.heroSub {
+  font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.8;
+  margin-bottom: 32px; max-width: 460px;
+}
+.storeBtns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+.storeBtn {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,0.1); color: white; padding: 14px 22px;
+  border-radius: 16px; text-decoration: none; transition: all 0.3s;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.storeBtn:hover { background: var(--orange); border-color: var(--orange); transform: translateY(-3px); }
+.storeBtnIcon { font-size: 22px; }
+.storeBtnLabel { font-size: 11px; color: rgba(255,255,255,0.65); }
+.storeBtnName { font-size: 14px; font-weight: 800; }
+.heroPhone { position: relative; z-index: 1; display: flex; justify-content: center; }
+.phoneMock {
+  width: 260px; height: 500px; background: var(--text);
+  border-radius: 40px; border: 5px solid rgba(255,255,255,0.15);
+  overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+  display: flex; flex-direction: column; padding: 24px 16px 16px; gap: 10px;
+}
+.phoneNotch {
+  width: 70px; height: 6px; background: rgba(255,255,255,0.1);
+  border-radius: 3px; margin: 0 auto 14px;
+}
+.phoneLogo {
+  font-family: var(--font-playfair), serif; font-size: 20px;
+  color: white; text-align: center; margin-bottom: 6px;
+}
+.phoneLogo span { color: var(--orange); }
+.phoneBanner {
+  background: rgba(244,123,32,0.15); border: 1px solid rgba(244,123,32,0.2);
+  border-radius: 12px; padding: 10px 12px; font-size: 11px;
+  color: rgba(255,255,255,0.8); text-align: center;
+}
+.phoneItem {
+  background: rgba(255,255,255,0.06); border-radius: 12px;
+  padding: 10px 12px; display: flex; align-items: center; gap: 8px;
+}
+.phoneItem span:first-child { font-size: 20px; }
+.phoneItemName { font-size: 11px; color: rgba(255,255,255,0.85); font-weight: 600; flex: 1; }
+.phoneItemPrice { display: none; }
+.phoneNav {
+  display: flex; justify-content: space-around; margin-top: auto;
+  padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.06);
+}
+.phoneNav span { font-size: 18px; opacity: 0.5; }
+
+/* Features */
+.featuresSection { padding: 80px 5%; }
+.featuresGrid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;
+}
+.featureCard {
+  background: white; border-radius: 20px; padding: 32px 24px;
+  border: 1px solid var(--border); text-align: center;
+  transition: all 0.4s;
+}
+.featureCard:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
+.featureIcon {
+  font-size: 40px; margin-bottom: 14px;
+  animation: featurePulse 2s ease-in-out infinite;
+}
+@keyframes featurePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.featureCard h4 { font-size: 15px; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+.featureCard p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* QR */
+.qrSection {
+  background: var(--cream2); padding: 80px 5%; text-align: center;
+}
+.qrBox {
+  display: inline-flex; flex-direction: column; align-items: center;
+  background: white; border-radius: 24px; padding: 40px 48px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06); margin-top: 32px;
+}
+.qrPlaceholder {
+  width: 180px; height: 180px; background: var(--text);
+  border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; position: relative; overflow: hidden;
+}
+.qrInner {
+  color: white; font-size: 13px; font-weight: 600; text-align: center; padding: 8px;
+}
+.qrScan {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--orange); animation: qrScanLine 2s ease-in-out infinite;
+}
+@keyframes qrScanLine {
+  0% { top: 0; }
+  50% { top: calc(100% - 3px); }
+  100% { top: 0; }
+}
+.qrLabel { font-size: 14px; color: var(--text2); }
+
+/* Steps */
+.stepsSection { padding: 80px 5%; text-align: center; }
+.stepsGrid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 48px;
+}
+.step { text-align: center; }
+.stepNum {
+  width: 56px; height: 56px; border-radius: 50%; background: var(--orange);
+  color: white; font-family: var(--font-playfair), serif; font-size: 22px;
+  font-weight: 700; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px; box-shadow: 0 8px 20px rgba(244,123,32,0.3);
+}
+.step h4 { font-size: 14px; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+.step p { font-size: 13px; color: var(--text2); line-height: 1.6; }

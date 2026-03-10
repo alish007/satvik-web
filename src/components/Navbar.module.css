@@ -1,0 +1,128 @@
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 0 5%; height: 70px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.4s;
+}
+.nav.scrolled {
+  background: rgba(250,248,244,0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.navLogo {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+}
+.logoCircle {
+  width: 42px; height: 42px; background: var(--orange); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 17px; font-weight: 700; color: white; letter-spacing: -0.02em;
+}
+.logoText {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700; color: var(--green);
+}
+.logoText span { color: var(--orange); }
+.logoSub {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text2); display: block; line-height: 1; margin-top: 1px;
+}
+.navLinks {
+  list-style: none; display: flex; gap: 32px; align-items: center;
+}
+.navLinks a {
+  text-decoration: none; color: var(--text2); font-size: 14px;
+  font-weight: 600; letter-spacing: 0.03em; transition: color 0.2s;
+  position: relative;
+}
+.navLinks a:hover { color: var(--orange); }
+.activeLink {
+  color: var(--orange) !important;
+}
+.activeLink::after {
+  content: ''; position: absolute; bottom: -6px; left: 50%;
+  transform: translateX(-50%); width: 20px; height: 3px;
+  background: var(--orange); border-radius: 2px;
+}
+.navCta {
+  background: var(--orange) !important; color: white !important;
+  padding: 10px 22px; border-radius: 30px; font-weight: 700 !important;
+  transition: all 0.2s !important;
+  box-shadow: 0 4px 16px rgba(244,123,32,0.3);
+}
+.navCta:hover {
+  background: var(--orange-d) !important; transform: translateY(-2px);
+}
+.navCta::after { display: none !important; }
+
+/* Hamburger */
+.hamburger {
+  display: none; width: 36px; height: 36px; border: none;
+  background: none; cursor: pointer; position: relative;
+  z-index: 210;
+}
+.hamburgerLine {
+  display: block; width: 24px; height: 2px; background: var(--green);
+  position: relative; margin: 0 auto; transition: all 0.3s;
+}
+.hamburgerLine::before, .hamburgerLine::after {
+  content: ''; position: absolute; left: 0; width: 24px; height: 2px;
+  background: var(--green); transition: all 0.3s;
+}
+.hamburgerLine::before { top: -7px; }
+.hamburgerLine::after { top: 7px; }
+.hamburgerOpen { background: transparent; }
+.hamburgerOpen::before { top: 0; transform: rotate(45deg); }
+.hamburgerOpen::after { top: 0; transform: rotate(-45deg); }
+
+/* Drawer */
+.drawer {
+  position: fixed; inset: 0; z-index: 300; pointer-events: none;
+  visibility: hidden;
+}
+.drawerOpen { pointer-events: all; visibility: visible; }
+.drawerOverlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+  opacity: 0; transition: opacity 0.3s;
+}
+.drawerOpen .drawerOverlay { opacity: 1; }
+.drawerContent {
+  position: absolute; top: 0; right: 0; width: 300px; height: 100%;
+  background: white; padding: 28px; transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+  display: flex; flex-direction: column;
+}
+.drawerOpen .drawerContent { transform: translateX(0); }
+.drawerHeader {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 36px;
+}
+.drawerClose {
+  width: 36px; height: 36px; border: 1px solid var(--border);
+  border-radius: 50%; background: none; cursor: pointer; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; color: var(--text);
+}
+.drawerClose:hover { background: var(--cream); }
+.drawerLinks {
+  list-style: none; display: flex; flex-direction: column; gap: 0;
+}
+.drawerLinks li a {
+  display: block; padding: 14px 0; font-size: 16px; font-weight: 600;
+  color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+.drawerLinks li a:hover { color: var(--orange); }
+.drawerCta {
+  display: block; text-align: center; margin-top: auto;
+  background: var(--orange); color: white; padding: 14px;
+  border-radius: 30px; text-decoration: none; font-weight: 700;
+  box-shadow: 0 8px 24px rgba(244,123,32,0.3); transition: all 0.2s;
+}
+.drawerCta:hover { background: var(--orange-d); }
+
+@media (max-width: 768px) {
+  .navLinks { display: none; }
+  .hamburger { display: block; }
+}

@@ -1,0 +1,16 @@
+.ticker {
+  background: var(--green); padding: 14px 0; overflow: hidden;
+}
+.tickerInner {
+  display: flex; gap: 48px; animation: tick 20s linear infinite;
+  white-space: nowrap;
+}
+.tickerItem {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.8);
+  letter-spacing: 0.06em; text-transform: uppercase; flex-shrink: 0;
+}
+.tickerDot {
+  width: 6px; height: 6px; background: var(--orange);
+  border-radius: 50%; flex-shrink: 0;
+}
