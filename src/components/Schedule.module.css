@@ -1,6 +1,6 @@
 .schedSection {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center;
+  gap: 80px; align-items: center; overflow: hidden;
 }
 .schedPhone {
   background: var(--green); border-radius: 32px; padding: 32px 28px;
