@@ -38,8 +38,8 @@ export default function Hero() {
           <div className={styles.orbitItem}>🥕</div>
           <div className={styles.orbitItem}>🫐</div>
           <div className={styles.bottleCenter}>🥤</div>
-          <div className={styles.pillFloat}><span>⭐</span><span>100% Natural · Zero Preservatives</span></div>
-          <div className={styles.pillFloat}><span>🔄</span><span>Subscribe Weekly · Save 15%</span></div>
+          <div className={`${styles.pillFloat} ${styles.pillFloatTop}`}><span>⭐</span><span>100% Natural · Zero Preservatives</span></div>
+          <div className={`${styles.pillFloat} ${styles.pillFloatBottom}`}><span>🔄</span><span>Subscribe Weekly · Save 15%</span></div>
         </div>
       </div>
     </section>
