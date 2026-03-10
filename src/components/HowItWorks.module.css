@@ -25,3 +25,13 @@
 .howStep p {
   font-size: 13px; color: var(--text2); line-height: 1.7;
 }
+
+/* ===== RESPONSIVENESS ===== */
+@media (max-width: 1024px) {
+  .howGrid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .howGrid::before { display: none; }
+}
+
+@media (max-width: 768px) {
+  .howGrid { grid-template-columns: 1fr; gap: 32px; margin-top: 40px; }
+}

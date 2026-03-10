@@ -26,6 +26,11 @@ body { background: var(--cream); color: var(--text); overflow-x: hidden; }
 .s-title { font-family: var(--font-playfair), 'Playfair Display', serif; font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 700; color: var(--green); line-height: 1.15; }
 .s-title em { font-style: italic; color: var(--orange); }
 
+@media (max-width: 768px) {
+  .section { padding: 60px 5%; }
+  .s-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+}
+
 /* ===== BUTTONS ===== */
 .btn-primary {
   background: var(--orange); color: white; padding: 15px 30px; border-radius: 30px;

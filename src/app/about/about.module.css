@@ -30,7 +30,7 @@
   display: flex; align-items: center; justify-content: center;
   font-size: 120px; min-height: 340px; position: relative;
 }
-.storyTextBlock {}
+
 .storyTextBlock h3 {
   font-family: var(--font-playfair), serif; font-size: 1.8rem;
   font-weight: 700; color: var(--green); margin-bottom: 14px;
@@ -153,4 +153,21 @@
   margin-top: 32px; background: white; border-radius: 20px;
   height: 300px; display: flex; align-items: center; justify-content: center;
   border: 2px dashed var(--border); font-size: 15px; color: var(--text3);
+}
+
+/* ===== RESPONSIVENESS ===== */
+@media (max-width: 1024px) {
+  .philGrid, .sustainGrid, .teamGrid { grid-template-columns: repeat(2, 1fr); }
+  .farmGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .heroSection, .storySection, .philosophySection, .farmSection, .sustainSection, .teamSection, .mapSection { padding: 40px 5%; }
+  .storyGrid { grid-template-columns: 1fr; gap: 40px; }
+  .heroTitle { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .philGrid, .farmGrid, .sustainGrid, .teamGrid { grid-template-columns: 1fr; gap: 20px; }
+  .storyVisual { min-height: 240px; font-size: 80px; padding: 30px; }
 }

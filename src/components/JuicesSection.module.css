@@ -60,3 +60,21 @@
 }
 .jcardPrice { font-size: 14px; font-weight: 800; color: var(--orange); }
 .jcardSize { font-size: 9px; color: rgba(255,255,255,0.4); margin-top: 1px; }
+
+/* ===== RESPONSIVENESS ===== */
+@media (max-width: 1024px) {
+  .juicesGrid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .jcardTop { height: 140px; }
+}
+
+@media (max-width: 768px) {
+  .juicesSection { padding: 60px 5%; }
+  .juicesHdr { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 30px; }
+  .juicesGrid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .juicesGrid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .jcardEmoji { font-size: 40px; }
+  .jcardName { font-size: 11px; }
+}

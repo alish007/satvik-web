@@ -30,3 +30,14 @@
   display: flex; justify-content: space-between; align-items: center;
   font-size: 12px; color: rgba(255,255,255,0.25);
 }
+
+/* ===== RESPONSIVENESS ===== */
+@media (max-width: 1024px) {
+  .footerTop { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  .footer { padding: 50px 5% 24px; }
+  .footerTop { grid-template-columns: 1fr; gap: 32px; border-bottom: none; padding-bottom: 20px; }
+  .footerBottom { flex-direction: column; gap: 12px; text-align: center; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; }
+}

@@ -101,3 +101,19 @@
 .relatedGrid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 28px;
 }
+
+/* ===== RESPONSIVENESS ===== */
+@media (max-width: 1024px) {
+  .grid, .relatedGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .heroSection, .listing, .postHeader, .postContent, .shareBar, .relatedSection { padding-left: 5%; padding-right: 5%; }
+  .postTitle { font-size: 2rem; }
+  .heroTitle { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .grid, .relatedGrid { grid-template-columns: 1fr; }
+  .postContent h2 { font-size: 1.4rem; }
+}

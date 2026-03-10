@@ -63,3 +63,17 @@
   font-size: 40px; opacity: 0.06; color: var(--orange);
   font-family: var(--font-playfair), serif;
 }
+
+/* ===== RESPONSIVENESS ===== */
+@media (max-width: 1024px) {
+  .card { flex: 0 0 calc(50% - 12px); }
+}
+
+@media (max-width: 768px) {
+  .testimonials { padding: 60px 5%; }
+  .card { flex: 0 0 100%; padding: 24px 20px; }
+  .header { margin-bottom: 40px; }
+  .navBtn { width: 36px; height: 36px; font-size: 14px; }
+  .prevBtn { left: -10px; }
+  .nextBtn { right: -10px; }
+}

@@ -11,7 +11,7 @@
 
 /* Contact Form */
 .contactSection { padding: 60px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-.contactInfo {}
+
 .contactInfo h3 {
   font-family: var(--font-playfair), serif; font-size: 1.5rem;
   font-weight: 700; color: var(--green); margin-bottom: 16px;
@@ -122,3 +122,21 @@
   font-weight: 700; font-family: inherit; cursor: pointer; transition: all 0.3s;
 }
 .pincodeBtn:hover { background: var(--orange-d); }
+
+/* ===== RESPONSIVENESS ===== */
+@media (max-width: 1024px) {
+  .contactSection { grid-template-columns: 1fr; gap: 40px; }
+  .formSection { padding: 24px; }
+}
+
+@media (max-width: 768px) {
+  .heroSection, .contactSection, .faqSection, .mapSection { padding: 40px 5%; }
+  .heroTitle { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .formRow { grid-template-columns: 1fr; }
+  .faqQuestion { padding: 14px 16px; font-size: 13px; }
+  .pincodeCheck { flex-direction: column; }
+  .pincodeInput { width: 100%; }
+}
