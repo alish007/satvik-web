@@ -90,3 +90,10 @@
   .storeBtn { width: 100%; justify-content: center; }
   .appPhone { transform: scale(0.9); }
 }
+
+@media (max-width: 480px) {
+  .appSection { padding: 50px 5%; gap: 40px; }
+  .appPhone { transform: scale(0.8); transform-origin: top center; margin-bottom: -40px; }
+  .sTitle { font-size: 2rem; }
+  .storeBtnName { font-size: 13px; }
+}

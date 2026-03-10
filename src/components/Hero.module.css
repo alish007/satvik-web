@@ -118,7 +118,18 @@
 
 @media (max-width: 768px) {
   .hero { padding: 100px 5% 40px; }
+  .heroTitle { font-size: 2.8rem; }
   .juiceShowcase { width: 100%; height: 380px; transform: scale(0.85); transform-origin: top center; }
   .heroActs { flex-direction: column; width: 100%; }
   .heroActs a { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .heroTitle { font-size: 2.2rem; }
+  .eyebrow { padding: 5px 12px; }
+  .eyebrow span { font-size: 10px; }
+  .heroSub { font-size: 15px; }
+  .juiceShowcase { height: 300px; transform: scale(0.65); }
+  .heroActs { gap: 10px; }
+  .heroTrust { flex-direction: column; gap: 12px; align-items: center; }
 }

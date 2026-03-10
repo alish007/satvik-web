@@ -77,3 +77,11 @@
   .prevBtn { left: -10px; }
   .nextBtn { right: -10px; }
 }
+
+@media (max-width: 480px) {
+  .testimonials { padding: 50px 5%; }
+  .card { padding: 20px 16px; }
+  .quote { font-size: 13px; }
+  .avatar { width: 44px; height: 44px; font-size: 20px; }
+  .authorInfo h4 { font-size: 14px; }
+}

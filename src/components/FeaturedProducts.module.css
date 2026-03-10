@@ -83,7 +83,16 @@
 }
 
 @media (max-width: 480px) {
-  .grid { grid-template-columns: 1fr; }
-  .cardTop { height: 200px; }
+  .grid { grid-template-columns: 1fr; gap: 12px; }
+  .card { display: flex; flex-direction: row; align-items: center; padding: 10px; border-radius: 16px; }
+  .cardTop { width: 90px; height: 90px; flex-shrink: 0; border-radius: 12px; background: var(--cream2); }
+  .cardEmoji { font-size: 44px; }
+  .badge { top: 6px; right: 6px; font-size: 8px; padding: 3px 6px; }
+  .cardBody { padding: 0 0 0 14px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .cardName { font-size: 14px; margin-bottom: 2px; }
+  .cardCategory { font-size: 9px; margin-bottom: 4px; }
+  .cardSize { font-size: 11px; margin-bottom: 8px; }
+  .cardPrice { font-size: 16px; }
+  .cardSubPrice { font-size: 10px; padding: 2px 6px; }
   .pill { padding: 6px 14px; font-size: 12px; }
 }
