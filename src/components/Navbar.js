@@ -12,10 +12,13 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
+import { useAuth } from '@/context/AuthContext';
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { user, openLoginModal, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -48,9 +51,20 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
-          <li>
-            <Link href="/download" className={styles.navCta}>Download App</Link>
-          </li>
+          {user ? (
+            <div className="flex items-center gap-4 ml-4">
+               <li>
+                 <Link href="/profile" className="text-gray-800 hover:text-green-600 font-medium transition-colors">My Profile</Link>
+               </li>
+               <li>
+                 <button onClick={signOut} className={styles.navCta} style={{backgroundColor: '#ef4444', borderColor: '#ef4444'}}>Logout</button>
+               </li>
+            </div>
+          ) : (
+            <li>
+              <button onClick={openLoginModal} className={styles.navCta}>Login / Signup</button>
+            </li>
+          )}
         </ul>
         <button
           className={styles.hamburger}

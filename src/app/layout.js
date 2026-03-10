@@ -28,11 +28,17 @@ export const metadata = {
   },
 };
 
+import { AuthProvider } from '@/context/AuthContext';
+import LoginModal from '@/components/LoginModal';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${playfair.variable} ${nunito.variable}`}>
       <body style={{ fontFamily: 'var(--font-nunito), Nunito, sans-serif' }}>
-        {children}
+        <AuthProvider>
+          {children}
+          <LoginModal />
+        </AuthProvider>
       </body>
     </html>
   );

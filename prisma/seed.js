@@ -1,0 +1,332 @@
+// ============================================
+// Satvik Platform — Database Seed Script
+// Seeds categories and products from existing data
+// ============================================
+
+const { PrismaClient } = require('@prisma/client');
+require('dotenv').config();
+
+const prisma = new PrismaClient();
+
+// Categories to seed
+const categories = [
+  { name: 'Juices', slug: 'juices', description: 'Cold-pressed healing juices', emoji: '🥤', sortOrder: 1 },
+  { name: 'Shots', slug: 'shots', description: 'Concentrated wellness shots', emoji: '🔥', sortOrder: 2 },
+  { name: 'Vegetables', slug: 'vegetables', description: 'Farm-fresh organic vegetables', emoji: '🥬', sortOrder: 3 },
+  { name: 'Combos', slug: 'combos', description: 'Curated combo packs', emoji: '📦', sortOrder: 4 },
+];
+
+// Products (from existing src/data/products.js)
+const products = [
+  {
+    slug: 'green-power-detox', name: 'Super Green Power Detox', category: 'Juices',
+    emoji: '🥬', color: '#1E5631', price: 49, subscriptionPrice: 42, size: '200ml', badge: 'Best Seller',
+    description: 'A powerful blend of cucumber, amla, spinach, and ginger designed to flush toxins and revitalize your body from the inside out.',
+    ingredients: ['Cucumber', 'Amla', 'Spinach', 'Ginger'],
+    benefits: ['Detoxifies liver', 'Boosts immunity', 'Improves digestion', 'Rich in Vitamin C'],
+    nutrition: { calories: 45, protein: '1.2g', fiber: '2.1g', vitaminC: '85%', iron: '12%' },
+  },
+  {
+    slug: 'anti-inflammatory-elixir', name: 'Anti-Inflammatory Veg Elixir', category: 'Juices',
+    emoji: '🍅', color: '#8B1A2A', price: 49, subscriptionPrice: 42, size: '200ml', badge: null,
+    description: 'A warming blend of carrot, tomato, turmeric, and lemon to fight inflammation and promote joint health.',
+    ingredients: ['Carrot', 'Tomato', 'Turmeric', 'Lemon'],
+    benefits: ['Reduces inflammation', 'Supports joints', 'Antioxidant-rich', 'Anti-aging'],
+    nutrition: { calories: 52, protein: '1.5g', fiber: '1.8g', vitaminC: '72%', iron: '8%' },
+  },
+  {
+    slug: 'energy-glow', name: 'Energy Glow (Veg + Citrus)', category: 'Juices',
+    emoji: '🍊', color: '#C05A0A', price: 49, subscriptionPrice: 42, size: '200ml', badge: 'New',
+    description: 'A citrus-infused vegetable blend with mausambi, carrot, orange, and mint for radiant skin and natural energy.',
+    ingredients: ['Mausambi', 'Carrot', 'Orange', 'Mint'],
+    benefits: ['Instant energy', 'Glowing skin', 'Hydrating', 'Mood booster'],
+    nutrition: { calories: 58, protein: '0.8g', fiber: '1.5g', vitaminC: '120%', iron: '6%' },
+  },
+  {
+    slug: 'fruit-cooling', name: 'Fruit Cooling Juice', category: 'Juices',
+    emoji: '🍉', color: '#B83225', price: 49, subscriptionPrice: 42, size: '200ml', badge: 'Seasonal',
+    description: 'Beat the Gujarat heat with this cooling blend of watermelon, pomegranate, and pineapple.',
+    ingredients: ['Watermelon', 'Pomegranate', 'Pineapple'],
+    benefits: ['Cooling effect', 'Hydrating', 'Rich in electrolytes', 'Heart-healthy'],
+    nutrition: { calories: 62, protein: '0.6g', fiber: '1.2g', vitaminC: '68%', iron: '5%' },
+  },
+  {
+    slug: 'immunity-booster', name: 'Immunity Booster', category: 'Juices',
+    emoji: '🍋', color: '#4A6B00', price: 49, subscriptionPrice: 42, size: '200ml', badge: 'Best Seller',
+    description: 'Carrot, pineapple, tulsi, and ginger — the ultimate Ayurvedic immunity shield.',
+    ingredients: ['Carrot', 'Pineapple', 'Tulsi', 'Ginger'],
+    benefits: ['Immunity boost', 'Cold prevention', 'Gut health', 'Anti-viral'],
+    nutrition: { calories: 48, protein: '1.0g', fiber: '2.0g', vitaminC: '95%', iron: '10%' },
+  },
+  {
+    slug: 'red-vitality', name: 'Red Vitality (Veg Power)', category: 'Juices',
+    emoji: '🫐', color: '#6B1827', price: 49, subscriptionPrice: 42, size: '200ml', badge: null,
+    description: 'Beetroot, amla, tomato, and carrot — packed with iron and antioxidants for unstoppable energy.',
+    ingredients: ['Beetroot', 'Amla', 'Tomato', 'Carrot'],
+    benefits: ['Iron-rich', 'Blood purifier', 'Stamina builder', 'Heart-healthy'],
+    nutrition: { calories: 55, protein: '1.6g', fiber: '2.4g', vitaminC: '78%', iron: '22%' },
+  },
+  {
+    slug: 'light-fruit-digestive', name: 'Light Fruit Digestive', category: 'Juices',
+    emoji: '🍏', color: '#7A5500', price: 49, subscriptionPrice: 42, size: '200ml', badge: null,
+    description: "A gentle post-meal digestive with apple, lemon, pineapple, and mausambi.",
+    ingredients: ['Apple', 'Lemon', 'Pineapple', 'Mausambi'],
+    benefits: ['Aids digestion', 'Reduces bloating', 'Light & refreshing', 'Alkalizing'],
+    nutrition: { calories: 42, protein: '0.5g', fiber: '1.8g', vitaminC: '88%', iron: '4%' },
+  },
+  {
+    slug: 'turmeric-ginger-shot', name: 'Turmeric Ginger Fire Shot', category: 'Shots',
+    emoji: '🔥', color: '#B8860B', price: 29, subscriptionPrice: 25, size: '60ml', badge: 'New',
+    description: 'A concentrated 60ml shot of turmeric, ginger, black pepper, and honey — pure Ayurvedic fire.',
+    ingredients: ['Turmeric', 'Ginger', 'Black Pepper', 'Honey'],
+    benefits: ['Anti-inflammatory', 'Metabolism boost', 'Cold fighter', 'Pain relief'],
+    nutrition: { calories: 18, protein: '0.2g', fiber: '0.3g', vitaminC: '15%', iron: '4%' },
+  },
+  {
+    slug: 'amla-shot', name: 'Amla Vitamin C Bomb', category: 'Shots',
+    emoji: '💚', color: '#2E8B57', price: 29, subscriptionPrice: 25, size: '60ml', badge: null,
+    description: 'Pure amla concentrate with lemon and tulsi — 20x more Vitamin C than orange.',
+    ingredients: ['Amla', 'Lemon', 'Tulsi', 'Honey'],
+    benefits: ['500% Vitamin C', 'Hair & skin health', 'Immunity shield', 'Anti-aging'],
+    nutrition: { calories: 15, protein: '0.3g', fiber: '0.4g', vitaminC: '500%', iron: '6%' },
+  },
+  {
+    slug: 'wheatgrass-shot', name: 'Wheatgrass Detox Shot', category: 'Shots',
+    emoji: '🌱', color: '#228B22', price: 35, subscriptionPrice: 30, size: '60ml', badge: null,
+    description: "Freshly cut wheatgrass juice — nature's most potent green superfood.",
+    ingredients: ['Wheatgrass', 'Lemon', 'Ginger'],
+    benefits: ['Blood purifier', 'Chlorophyll-rich', 'Alkalizing', 'Energy boost'],
+    nutrition: { calories: 12, protein: '0.8g', fiber: '0.2g', vitaminC: '25%', iron: '18%' },
+  },
+  {
+    slug: 'farm-fresh-spinach', name: 'Farm Fresh Spinach Bundle', category: 'Vegetables',
+    emoji: '🥬', color: '#2D5A3D', price: 40, subscriptionPrice: 35, size: '250g', badge: null,
+    description: 'Organic spinach harvested from our partner farms in Gujarat — no pesticides, no compromise.',
+    ingredients: ['Organic Spinach'],
+    benefits: ['Iron-rich', 'Organic certified', 'Farm-fresh daily', 'No pesticides'],
+    nutrition: { calories: 23, protein: '2.9g', fiber: '2.2g', vitaminC: '28%', iron: '36%' },
+  },
+  {
+    slug: 'seasonal-veggie-box', name: 'Seasonal Veggie Box', category: 'Vegetables',
+    emoji: '🥦', color: '#3A7D44', price: 149, subscriptionPrice: 129, size: '1kg assorted', badge: 'Best Seller',
+    description: 'A curated mix of 5-6 seasonal vegetables from local farms, delivered fresh every morning.',
+    ingredients: ['Broccoli', 'Carrots', 'Beetroot', 'Tomatoes', 'Cucumber', 'Seasonal picks'],
+    benefits: ['Farm to table', 'Seasonal variety', 'No middlemen', 'Supporting local farmers'],
+    nutrition: { calories: 85, protein: '4.2g', fiber: '8.5g', vitaminC: '120%', iron: '28%' },
+  },
+  {
+    slug: 'organic-carrot-pack', name: 'Organic Carrot Pack', category: 'Vegetables',
+    emoji: '🥕', color: '#E07020', price: 45, subscriptionPrice: 39, size: '500g', badge: null,
+    description: 'Sweet, crunchy organic carrots perfect for juicing or cooking.',
+    ingredients: ['Organic Carrots'],
+    benefits: ['Beta-carotene rich', 'Eye health', 'Sweet & crunchy', 'Pesticide-free'],
+    nutrition: { calories: 41, protein: '0.9g', fiber: '2.8g', vitaminC: '10%', iron: '3%' },
+  },
+  {
+    slug: 'weekly-detox-combo', name: 'Weekly Detox Combo', category: 'Combos',
+    emoji: '📦', color: '#1A3A2A', price: 299, subscriptionPrice: 249, size: '7 juices', badge: 'Best Value',
+    description: 'All 7 daily juices in one subscription — a different healing juice every day of the week.',
+    ingredients: ['All 7 daily juice varieties'],
+    benefits: ['Complete weekly detox', 'Save 15%', 'Auto-delivered', 'Full nutrition cycle'],
+    nutrition: { calories: 350, protein: '7.4g', fiber: '13.5g', vitaminC: '600%', iron: '67%' },
+  },
+  {
+    slug: 'immunity-starter-pack', name: 'Immunity Starter Pack', category: 'Combos',
+    emoji: '🛡️', color: '#4A6B00', price: 199, subscriptionPrice: 169, size: '5 items', badge: 'New',
+    description: '3 immunity juices + 2 turmeric shots — your 5-day immunity kickstart.',
+    ingredients: ['Immunity Booster ×3', 'Turmeric Shot ×2'],
+    benefits: ['5-day immunity plan', 'Complete wellness', 'Save 20%', 'Auto-delivered'],
+    nutrition: { calories: 180, protein: '3.4g', fiber: '6.6g', vitaminC: '320%', iron: '38%' },
+  },
+  {
+    slug: 'morning-energy-combo', name: 'Morning Energy Combo', category: 'Combos',
+    emoji: '☀️', color: '#C05A0A', price: 149, subscriptionPrice: 129, size: '3 items', badge: null,
+    description: 'Start every morning right — 1 green juice + 1 citrus juice + 1 wheatgrass shot.',
+    ingredients: ['Green Detox ×1', 'Energy Glow ×1', 'Wheatgrass Shot ×1'],
+    benefits: ['Morning energy', 'Complete nutrition', 'Save 10%', 'Perfect start'],
+    nutrition: { calories: 115, protein: '2.8g', fiber: '3.8g', vitaminC: '230%', iron: '30%' },
+  },
+  {
+    slug: 'fresh-coconut-water', name: 'Fresh Tender Coconut Water', category: 'Juices',
+    emoji: '🥥', color: '#8B7355', price: 69, subscriptionPrice: 59, size: '300ml', badge: null,
+    description: "Pure tender coconut water delivered fresh — nature's perfect electrolyte drink.",
+    ingredients: ['Tender Coconut Water'],
+    benefits: ['Natural electrolytes', 'Post-workout recovery', 'Cooling', 'Hydrating'],
+    nutrition: { calories: 46, protein: '1.7g', fiber: '2.6g', vitaminC: '10%', iron: '4%' },
+  },
+  {
+    slug: 'aloe-vera-juice', name: 'Aloe Vera Healing Juice', category: 'Juices',
+    emoji: '🌿', color: '#556B2F', price: 59, subscriptionPrice: 49, size: '200ml', badge: 'Seasonal',
+    description: 'Fresh aloe vera gel blended with amla and honey — the Ayurvedic healing elixir.',
+    ingredients: ['Aloe Vera', 'Amla', 'Honey', 'Lemon'],
+    benefits: ['Gut healing', 'Skin health', 'Digestive aid', 'Anti-inflammatory'],
+    nutrition: { calories: 38, protein: '0.4g', fiber: '0.8g', vitaminC: '45%', iron: '3%' },
+  },
+];
+
+// Sample coupons
+const coupons = [
+  {
+    code: 'WELCOME20', description: '20% off your first order',
+    discountType: 'PERCENTAGE', discountValue: 20, minOrderValue: 99, maxDiscount: 100,
+    usageLimit: 1000, validFrom: new Date(), validUntil: new Date('2027-12-31'),
+  },
+  {
+    code: 'SATVIK50', description: 'Flat ₹50 off on orders above ₹199',
+    discountType: 'FLAT', discountValue: 50, minOrderValue: 199, maxDiscount: 50,
+    usageLimit: 500, validFrom: new Date(), validUntil: new Date('2027-06-30'),
+  },
+  {
+    code: 'SUBSCRIBE15', description: '15% off on subscription plans',
+    discountType: 'PERCENTAGE', discountValue: 15, minOrderValue: 149, maxDiscount: 200,
+    usageLimit: null, validFrom: new Date(), validUntil: new Date('2027-12-31'),
+  },
+];
+
+async function main() {
+  console.log('🌱 Seeding Satvik database...\n');
+
+  // 1. Seed categories
+  console.log('📂 Creating categories...');
+  const categoryMap = {};
+  for (const cat of categories) {
+    const created = await prisma.category.upsert({
+      where: { slug: cat.slug },
+      update: cat,
+      create: cat,
+    });
+    categoryMap[cat.name] = created.id;
+    console.log(`   ✓ ${cat.emoji} ${cat.name}`);
+  }
+
+  // 2. Seed products
+  console.log('\n🧃 Creating products...');
+  for (const p of products) {
+    const categoryId = categoryMap[p.category];
+    await prisma.product.upsert({
+      where: { slug: p.slug },
+      update: {
+        name: p.name, categoryId, description: p.description,
+        price: p.price, subscriptionPrice: p.subscriptionPrice, size: p.size,
+        emoji: p.emoji, color: p.color, badge: p.badge,
+        ingredients: p.ingredients, benefits: p.benefits, nutritionalInfo: p.nutrition,
+      },
+      create: {
+        slug: p.slug, name: p.name, categoryId, description: p.description,
+        price: p.price, subscriptionPrice: p.subscriptionPrice, size: p.size,
+        emoji: p.emoji, color: p.color, badge: p.badge,
+        ingredients: p.ingredients, benefits: p.benefits, nutritionalInfo: p.nutrition,
+      },
+    });
+    console.log(`   ✓ ${p.emoji} ${p.name} — ₹${p.price}`);
+  }
+
+  // 3. Seed coupons
+  console.log('\n🎟️  Creating coupons...');
+  for (const c of coupons) {
+    await prisma.coupon.upsert({
+      where: { code: c.code },
+      update: c,
+      create: c,
+    });
+    console.log(`   ✓ ${c.code} — ${c.description}`);
+  }
+
+  // 4. Create admin user
+  console.log('\n👤 Creating admin user...');
+  await prisma.user.upsert({
+    where: { email: 'admin@satvik.in' },
+    update: {},
+    create: {
+      email: 'admin@satvik.in',
+      name: 'Satvik Admin',
+      role: 'ADMIN',
+      phone: '+919999999999',
+    },
+  });
+  console.log('   ✓ admin@satvik.in');
+
+  // 5. Blog Categories
+  console.log('Seeding blog categories...');
+  const blogCatsData = [
+    { name: 'Nutrition', slug: 'nutrition' },
+    { name: 'Ayurveda', slug: 'ayurveda' },
+    { name: 'Recipes', slug: 'recipes' },
+    { name: 'Seasonal', slug: 'seasonal' },
+  ];
+
+  const blogCategories = {};
+  for (const cat of blogCatsData) {
+    const created = await prisma.blogCategory.upsert({
+      where: { slug: cat.slug },
+      update: cat,
+      create: cat,
+    });
+    blogCategories[cat.name] = created;
+  }
+
+  // 6. Blog Posts
+  console.log('Seeding blog posts...');
+  const blogPostsData = [
+    {
+      slug: 'why-cold-pressed-juice-is-better',
+      title: 'Why Cold-Pressed Juice Is 10x Better Than Regular Juice',
+      excerpt: 'Cold-pressed juice retains more nutrients, enzymes, and vitamins compared to centrifugal juicing.',
+      category: 'Nutrition',
+      date: '2025-12-15',
+      readTime: '5 min',
+      emoji: '🧊',
+      content: 'Full content here...' 
+    },
+    {
+      slug: 'ayurvedic-morning-routine',
+      title: 'The Perfect Ayurvedic Morning Routine for Surat\'s Climate',
+      excerpt: 'Discover how ancient Ayurvedic wisdom, combined with local Gujarat ingredients, can transform your mornings.',
+      category: 'Ayurveda',
+      date: '2025-12-08',
+      readTime: '7 min',
+      emoji: '🌅',
+      content: 'Full content here...'
+    },
+    {
+      slug: 'green-smoothie-bowl-recipe',
+      title: 'Satvik Green Smoothie Bowl — 5-Minute Recipe',
+      excerpt: 'Turn your leftover green juice into a gorgeous smoothie bowl with this quick recipe.',
+      category: 'Recipes',
+      date: '2025-11-28',
+      readTime: '3 min',
+      emoji: '🥣',
+      content: 'Full content here...'
+    },
+    {
+      slug: 'monsoon-immunity-guide',
+      title: 'Monsoon Immunity: Your Complete Guide for Gujarat\'s Rainy Season',
+      excerpt: 'The monsoon brings relief from heat but also waterborne diseases. Here\'s how to build a fortress-level immune system.',
+      category: 'Seasonal',
+      date: '2025-11-20',
+      readTime: '6 min',
+      emoji: '🌧️',
+      content: 'Full content here...'
+    }
+  ];
+
+  for (const post of blogPostsData) {
+    const { category, ...postData } = post;
+    await prisma.blogPost.upsert({
+      where: { slug: postData.slug },
+      update: { ...postData, categoryId: blogCategories[category].id },
+      create: { ...postData, categoryId: blogCategories[category].id },
+    });
+  }
+
+  console.log('Seeding finished.');
+}
+
+main()
+  .catch((e) => {
+    console.error('❌ Seed failed:', e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

@@ -1,15 +1,18 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
+import { api } from '@/lib/api';
 import { faqs } from '@/data/faq';
 import styles from './contact.module.css';
 
 export default function ContactPage() {
   const [formType, setFormType] = useState('general');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [faqSearch, setFaqSearch] = useState('');
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -19,9 +22,28 @@ export default function ContactPage() {
       f.answer.toLowerCase().includes(faqSearch.toLowerCase())
   );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    const formData = new FormData(e.target);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      type: formType.toUpperCase(),
+      message: formType === 'wholesale' 
+        ? `Business: ${formData.get('business')}. Quantity: ${formData.get('quantity')}. Message: ${formData.get('message')}`
+        : formData.get('message'),
+    };
+
+    try {
+      await api.contact.submit(data);
+      setSubmitted(true);
+    } catch (err) {
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -89,34 +111,35 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit}>
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
-                  <input className={styles.formInput} placeholder="Your Name *" required />
+                  <input className={styles.formInput} name="name" placeholder="Your Name *" required />
                 </div>
                 <div className={styles.formGroup}>
-                  <input className={styles.formInput} type="email" placeholder="Email *" required />
+                  <input className={styles.formInput} name="email" type="email" placeholder="Email *" required />
                 </div>
               </div>
               <div className={styles.formGroup}>
-                <input className={styles.formInput} type="tel" placeholder="Phone Number" />
+                <input className={styles.formInput} name="phone" type="tel" placeholder="Phone Number" />
               </div>
               {formType === 'wholesale' && (
                 <>
                   <div className={styles.formGroup}>
-                    <input className={styles.formInput} placeholder="Business Name" />
+                    <input className={styles.formInput} name="business" placeholder="Business Name" />
                   </div>
                   <div className={styles.formGroup}>
-                    <input className={styles.formInput} placeholder="Estimated Order Quantity" />
+                    <input className={styles.formInput} name="quantity" placeholder="Estimated Order Quantity" />
                   </div>
                 </>
               )}
               <div className={styles.formGroup}>
                 <textarea
                   className={`${styles.formInput} ${styles.formTextarea}`}
+                  name="message"
                   placeholder={formType === 'wholesale' ? 'Tell us about your business needs...' : 'Your message...'}
                   required
                 />
               </div>
-              <button type="submit" className={styles.submitBtn}>
-                Send Message →
+              <button type="submit" className={styles.submitBtn} disabled={loading}>
+                {loading ? 'Sending...' : 'Send Message →'}
               </button>
             </form>
           )}

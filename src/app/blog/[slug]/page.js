@@ -1,28 +1,46 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { blogPosts } from '@/data/blog';
+import { api } from '@/lib/api';
 import styles from '../blog.module.css';
 
 const bgColors = ['#2D5A3D', '#8B1A2A', '#C05A0A', '#4A6B00', '#6B1827', '#7A5500'];
 
-export function generateStaticParams() {
-  return blogPosts.map((p) => ({ slug: p.slug }));
-}
+export default function BlogPost() {
+  const { slug } = useParams();
+  const [post, setPost] = useState(null);
+  const [related, setRelated] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-export function generateMetadata({ params }) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
-  if (!post) return { title: 'Post Not Found' };
-  return { title: `${post.title} — Satvik Blog`, description: post.excerpt };
-}
+  useEffect(() => {
+    async function load() {
+      setLoading(true);
+      try {
+        const [data, allPosts] = await Promise.all([
+          api.blog.getPost(slug),
+          api.blog.getPosts()
+        ]);
+        
+        if (!data) return setPost(null);
+        
+        setPost(data);
+        setRelated(allPosts.filter(p => p.slug !== slug).slice(0, 3));
+      } catch (err) {
+        console.error('Failed to load blog post', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, [slug]);
 
-export default async function BlogPost({ params }) {
-  const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  if (loading) return <div className={styles.postPage}><Navbar /><div style={{ color: 'white', textAlign: 'center', padding: '100px' }}>Loading Article...</div><Footer /></div>;
   if (!post) notFound();
 
-  const related = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
   const paragraphs = post.content.split('\n\n');
 
   return (
@@ -30,7 +48,7 @@ export default async function BlogPost({ params }) {
       <Navbar />
       <div className={styles.postHeader}>
         <div className={styles.postMeta}>
-          <span className={styles.postCategory}>{post.category}</span>
+          <span className={styles.postCategory}>{post.category?.name || post.category}</span>
           <span>{post.date}</span>
           <span>{post.readTime} read</span>
         </div>
@@ -54,7 +72,7 @@ export default async function BlogPost({ params }) {
       </div>
       <div className={styles.shareBar}>
         <span className={styles.shareLabel}>Share:</span>
-        <button className={styles.shareBtn}>📋</button>
+        <button className={styles.shareBtn} onClick={() => navigator.clipboard.writeText(window.location.href)}>📋</button>
         <button className={styles.shareBtn}>🐦</button>
         <button className={styles.shareBtn}>📱</button>
       </div>
@@ -64,7 +82,7 @@ export default async function BlogPost({ params }) {
           {related.map((r, i) => (
             <Link href={`/blog/${r.slug}`} className={styles.card} key={r.slug}>
               <div className={styles.cardTop} style={{ background: bgColors[i % bgColors.length] }}>
-                <span className={styles.cardBadge}>{r.category}</span>
+                <span className={styles.cardBadge}>{r.category?.name || r.category}</span>
                 {r.emoji}
               </div>
               <div className={styles.cardBody}>

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { products, categories } from '@/data/products';
+import { api } from '@/lib/api';
 import BulkOrderForm from '@/components/BulkOrderForm';
 import styles from './products.module.css';
 import cardStyles from '@/components/FeaturedProducts.module.css';
@@ -19,14 +19,44 @@ const badgeClass = {
 export default function ProductsPage() {
   const [active, setActive] = useState('All');
   const [search, setSearch] = useState('');
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState(['All']);
+  const [loading, setLoading] = useState(true);
   const gridRef = useRef(null);
 
+  useEffect(() => {
+    async function init() {
+      try {
+        const cats = await api.products.getCategories();
+        setCategories(['All', ...cats.map(c => c.name)]);
+      } catch (err) {
+        console.error('Failed to load categories', err);
+      }
+    }
+    init();
+  }, []);
+
+  useEffect(() => {
+    async function load() {
+      setLoading(true);
+      try {
+        // Find category slug if active is not 'All'
+        const data = await api.products.getAll(active === 'All' ? null : active.toLowerCase());
+        setProducts(data);
+      } catch (err) {
+        console.error('Failed to load products', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, [active]);
+
   const filtered = products
-    .filter((p) => active === 'All' || p.category === active)
     .filter((p) =>
       search === '' ||
       p.name.toLowerCase().includes(search.toLowerCase()) ||
-      p.ingredients.some((i) => i.toLowerCase().includes(search.toLowerCase()))
+      (p.ingredients && JSON.stringify(p.ingredients).toLowerCase().includes(search.toLowerCase()))
     );
 
   useEffect(() => {
@@ -34,7 +64,7 @@ export default function ProductsPage() {
       gridRef.current.classList.remove('visible');
       requestAnimationFrame(() => gridRef.current?.classList.add('visible'));
     }
-  }, [active, search]);
+  }, [active, search, products]);
 
   return (
     <div className={styles.productsPage}>
@@ -70,7 +100,9 @@ export default function ProductsPage() {
       </div>
       <div className={styles.catalog}>
         <div className={`${styles.catalogGrid} stagger visible`} ref={gridRef}>
-          {filtered.length > 0 ? (
+          {loading ? (
+             <div className={styles.loading}>Loading Freshness...</div>
+          ) : filtered.length > 0 ? (
             filtered.map((p) => (
               <Link href={`/products/${p.slug}`} className={cardStyles.card} key={p.slug}>
                 <div className={cardStyles.cardTop} style={{ background: p.color }}>
@@ -83,7 +115,7 @@ export default function ProductsPage() {
                   <div className={cardStyles.cardEmoji}>{p.emoji}</div>
                 </div>
                 <div className={cardStyles.cardBody}>
-                  <div className={cardStyles.cardCategory}>{p.category}</div>
+                  <div className={cardStyles.cardCategory}>{p.category?.name || p.category}</div>
                   <div className={cardStyles.cardName}>{p.name}</div>
                   <div className={cardStyles.cardSize}>{p.size}</div>
                 </div>

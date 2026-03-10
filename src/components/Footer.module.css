@@ -26,6 +26,17 @@
   font-size: 13px; transition: color 0.2s;
 }
 .footerCol ul li a:hover { color: var(--orange); }
+.ftMain { display: flex; flex-direction: column; gap: 24px; }
+.newsletter h6 { color: white; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.newsletter p { color: rgba(255,255,255,0.35); font-size: 12px; margin-bottom: 12px; }
+.subForm { display: flex; gap: 0; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 6px; max-width: 240px; }
+.subForm input {
+  background: transparent; border: none; color: white; padding: 8px 12px; font-size: 12px; flex: 1; outline: none;
+}
+.subForm button {
+  background: var(--orange); border: none; color: white; width: 32px; height: 32px; border-radius: 4px; cursor: pointer;
+}
+.subSuccess { color: var(--green); font-size: 12px; }
 .footerBottom {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 12px; color: rgba(255,255,255,0.25);
