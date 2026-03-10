@@ -38,3 +38,22 @@
   font-size: 16px; line-height: 1.85; color: var(--text2);
   margin: 20px 0 28px; font-weight: 400;
 }
+
+/* ===== RESPONSIVENESS ===== */
+@media (max-width: 1024px) {
+  .schedSection { gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  .schedSection { grid-template-columns: 1fr; text-align: center; }
+  .schedPhone { margin: 0 auto; max-width: 400px; width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .schedPhone { padding: 24px 20px; }
+  .spHdr { font-size: 15px; }
+  .spEm { font-size: 18px; }
+  .spName { font-size: 12px; }
+  .spDay { font-size: 10px; width: 24px; }
+  .spRenew span { font-size: 10px; }
+}
